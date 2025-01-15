@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
+#include "ppm.h"
 
 #define MAX_HEADER_SIZE 1024
 

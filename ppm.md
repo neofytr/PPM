@@ -39,3 +39,15 @@ Each PPM image consists of the following:
 Strings starting with "#" may be comments.
 
 All characters referred to herein are encoded in ASCII. "newline" refers to the character known in ASCII as Line Feed or LF. A "white space" character is space, CR, LF, TAB, VT, or FF (I.e. what the ANSI standard C isspace() function calls white space).
+
+# Plain PPM
+
+There is actually another version of the PPM format that is fairly rare: "plain" PPM format. The format above, which generally considered the normal one, is known as the "raw" PPM format. 
+
+The difference in the plain format is:
+
+1. There is exactly one image in a file.
+2. The magic number is P3 instead of P6.
+3. Each sample in the raster is represented as an ASCII decimal number (of arbitrary size).
+4. Each sample in the raster has white space before and after it. There must be at least one character of white space between any two samples, but there is no maximum. There is no particular separation of one pixel from another -- just the required separation between the blue sample of one pixel from the red sample of the next pixel.
+5. No line should be longer than 70 characters.

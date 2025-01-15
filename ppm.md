@@ -51,3 +51,7 @@ The difference in the plain format is:
 3. Each sample in the raster is represented as an ASCII decimal number (of arbitrary size).
 4. Each sample in the raster has white space before and after it. There must be at least one character of white space between any two samples, but there is no maximum. There is no particular separation of one pixel from another -- just the required separation between the blue sample of one pixel from the red sample of the next pixel.
 5. No line should be longer than 70 characters.
+
+There is a newline character at the end of each of these lines.
+
+Programs that read this format should be as lenient as possible, accepting anything that looks remotely like a PPM image.

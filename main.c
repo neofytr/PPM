@@ -65,14 +65,14 @@ int32_t save_raw_ppm_file(uint32_t *pixels, size_t width, size_t height, const c
 
 int main(void)
 {
-    const size_t width = 2;
-    const size_t height = 2;
-    uint32_t pixels[4] = {
-        0x00FF0000, // Red
-        0x0000FF00, // Green
-        0x000000FF, // Blue
-        0x00FFFFFF  // White
-    };
+    const size_t width = 800;
+    const size_t height = 600;
+    uint32_t pixels[width * height];
+
+    for (size_t counter = 0; counter < 800 * 600; counter++)
+    {
+        pixels[counter] = 0x00FF0000;
+    }
 
     int32_t result = save_raw_ppm_file(pixels, width, height, "test.ppm");
     if (result != 0)

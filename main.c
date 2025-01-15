@@ -69,9 +69,28 @@ int main(void)
     const size_t height = 600;
     uint32_t pixels[width * height];
 
-    for (size_t counter = 0; counter < 800 * 600; counter++)
+    uint8_t max_color_value = 255;
+
+    for (size_t counter = 0; counter < width * height; counter++)
     {
-        pixels[counter] = 0x00FF0000;
+        size_t x = counter % width;
+        size_t y = counter / width;
+
+        uint8_t component[4];
+
+        component[3] = 0x00;
+        component[2] = (uint8_t)((x / (float)width) * max_color_value); // integer division would just make x / width 0 for all x < width
+        component[1] = (uint8_t)(((x + y) / (float)(width + height)) * max_color_value);
+        component[0] = (uint8_t)((y / (float)height) * max_color_value);
+
+        uint32_t pixel = ((uint32_t)component[3] << 24) |
+                         ((uint32_t)component[2] << 16) |
+                         ((uint32_t)component[1] << 8) |
+                         ((uint32_t)component[0]);
+
+        // this can be done via uint32_t pixel = *(uint32_t *)component; but this results in unaligned memory access
+
+        pixels[counter] = pixel;
     }
 
     int32_t result = save_raw_ppm_file(pixels, width, height, "test.ppm");
